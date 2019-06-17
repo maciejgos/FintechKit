@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ContentView xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="FintechKit.Controls.TransactionCellView">
+    <StackLayout>
+        <StackLayout Orientation="Horizontal">
+            <BoxView Color="Orange"
+                        HeightRequest="40"
+                        WidthRequest="40"
+                        VerticalOptions="Center"/>
+            <StackLayout HorizontalOptions="FillAndExpand"
+                            Margin="10, 0, 0, 0">
+                <Label Text="{Binding Title}"
+                        TextColor="{StaticResource ContentTextColor}"
+                        FontSize="Default"
+                        FontAttributes="Bold"/>
+                <Label Text="{Binding Date}"
+                        TextColor="{StaticResource ContentTextColor}"
+                        FontSize="Small"/>
+            </StackLayout>
+            <Label Text="{Binding Amount, StringFormat='$ {0:G}'}"
+                    TextColor="{StaticResource ContentTextColor}"
+                    FontSize="Default"/>
+        </StackLayout>
+        <BoxView HeightRequest="1"
+                    Color="{StaticResource SeperatorLineColor}"
+                    Margin="-10, 10, -10, 0"/>
+    </StackLayout>
+</ContentView>
