@@ -13,6 +13,9 @@ namespace FintechKit.Views
     [DesignTimeVisible(false)]
     public partial class MainPage : ContentPage
     {
+        private uint animationLength = 600;
+        private bool isDetailView;
+
         public MainPage()
         {
             InitializeComponent();
@@ -20,11 +23,25 @@ namespace FintechKit.Views
 
         private async void OnCardItemTapped(object sender, EventArgs args)
         {
-            menuContainer.IsVisible = true;
+            if (isDetailView == false)
+            {
+                menuContainer.IsVisible = true;
+                await currentBalanceContainer.FadeTo(0, 10);
+                await myCardsContainer.TranslateTo(0, -(currentBalanceContainer.Height + 40), animationLength);
+                await menuContainer.TranslateTo(0, -100, animationLength, Easing.SinIn);
+                await transactionContainer.TranslateTo(0, 100, animationLength);
 
-            await myCardsContainer.TranslateTo(0, 0);
-            await menuContainer.TranslateTo(menuContainer.X, myCardsContainer.Height);
-            await transactionContainer.TranslateTo(transactionContainer.X, menuContainer.Y);
+                isDetailView = true;
+            }
+            else
+            {
+                await transactionContainer.TranslateTo(0, 0, animationLength);
+                await menuContainer.TranslateTo(0, 0, 10);
+                await currentBalanceContainer.FadeTo(1, 10);
+                await myCardsContainer.TranslateTo(0, 0, animationLength);
+
+                isDetailView = false;
+            }
         }
     }
 }
