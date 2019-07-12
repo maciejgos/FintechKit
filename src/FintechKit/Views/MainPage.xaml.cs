@@ -21,20 +21,27 @@ namespace FintechKit.Views
         {
             if (isDetailView == false)
             {
+                backButton.IsVisible = true;
                 menuContainer.IsVisible = true;
-                await currentBalanceContainer.FadeTo(0, 10);
-                await myCardsContainer.TranslateTo(0, -(currentBalanceContainer.Height + 40), animationLength);
-                await menuContainer.TranslateTo(0, -100, animationLength, Easing.SinIn);
-                await transactionContainer.TranslateTo(0, 100, animationLength);
+                cardDetailContainer.IsVisible = true;
+                var r = myCardsContainer.TranslateTo(0, -(currentBalanceContainer.Height + 20), animationLength);
+                var t = cardDetailContainer.TranslateTo(0, -(currentBalanceContainer.Height + 20), animationLength);
+                var s = menuContainer.TranslateTo(0, -80, animationLength);
+                var e = transactionContainer.TranslateTo(0, 100, animationLength);
+                await currentBalanceContainer.FadeTo(0, animationLength);
+
+                await myCardsContainer.FadeTo(0);
+                await cardDetailContainer.FadeTo(1);
+
 
                 isDetailView = true;
             }
             else
             {
-                await transactionContainer.TranslateTo(0, 0, animationLength);
-                await menuContainer.TranslateTo(0, 0, 10);
+                transactionContainer.TranslateTo(0, 0, animationLength);
+                menuContainer.TranslateTo(0, 0, animationLength);
                 await currentBalanceContainer.FadeTo(1, 10);
-                await myCardsContainer.TranslateTo(0, 0, animationLength);
+                myCardsContainer.TranslateTo(0, 0, animationLength);
 
                 isDetailView = false;
             }
