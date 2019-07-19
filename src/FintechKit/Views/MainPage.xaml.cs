@@ -1,5 +1,6 @@
 ﻿using System;
 using System.ComponentModel;
+using System.Threading.Tasks;
 using Xamarin.Forms;
 
 namespace FintechKit.Views
@@ -21,30 +22,62 @@ namespace FintechKit.Views
         {
             if (isDetailView == false)
             {
-                backButton.IsVisible = true;
-                menuContainer.IsVisible = true;
-                cardDetailContainer.IsVisible = true;
-                var r = myCardsContainer.TranslateTo(0, -(currentBalanceContainer.Height + 20), animationLength);
-                var t = cardDetailContainer.TranslateTo(0, -(currentBalanceContainer.Height + 20), animationLength);
-                var s = menuContainer.TranslateTo(0, -80, animationLength);
-                var e = transactionContainer.TranslateTo(0, 100, animationLength);
-                await currentBalanceContainer.FadeTo(0, animationLength);
-
-                await myCardsContainer.FadeTo(0);
-                await cardDetailContainer.FadeTo(1);
-
+                ShowControls();
+                await ShowContainersAnimation();
 
                 isDetailView = true;
             }
-            else
-            {
-                transactionContainer.TranslateTo(0, 0, animationLength);
-                menuContainer.TranslateTo(0, 0, animationLength);
-                await currentBalanceContainer.FadeTo(1, 10);
-                myCardsContainer.TranslateTo(0, 0, animationLength);
+        }
 
+        private async void BackButtonClicked(object sender, EventArgs e)
+        {
+            if (isDetailView)
+            {
                 isDetailView = false;
+                await HideContainersAnimation();
+
+                HideControls();
+
             }
+        }
+
+        private void ShowControls()
+        {
+            backButton.IsVisible = true;
+            menuContainer.IsVisible = true;
+            cardDetailContainer.IsVisible = true;
+        }
+
+        private void HideControls()
+        {
+            backButton.IsVisible = false;
+            menuContainer.IsVisible = false;
+            cardDetailContainer.IsVisible = false;
+        }
+
+        private async Task ShowContainersAnimation()
+        {
+            await myCardsContainer.TranslateTo(0, -(currentBalanceContainer.Height + 20), animationLength);
+            await cardDetailContainer.TranslateTo(0, -(currentBalanceContainer.Height + 20), animationLength);
+            await menuContainer.TranslateTo(0, -80, animationLength);
+            await transactionContainer.TranslateTo(0, 100, animationLength);
+            await currentBalanceContainer.FadeTo(0, animationLength);
+
+            await myCardsContainer.FadeTo(0);
+            await cardDetailContainer.FadeTo(1);
+        }
+
+        private async Task HideContainersAnimation()
+        {
+            await myCardsContainer.TranslateTo(0, 0, animationLength);
+            await cardDetailContainer.TranslateTo(0, 0, animationLength);
+            await menuContainer.TranslateTo(0, 0, animationLength);
+            await transactionContainer.TranslateTo(0, 0, animationLength);
+            await currentBalanceContainer.FadeTo(1, animationLength);
+
+            await myCardsContainer.FadeTo(1);
+            await cardDetailContainer.FadeTo(0);
+            await backButton.FadeTo(0);
         }
     }
 }

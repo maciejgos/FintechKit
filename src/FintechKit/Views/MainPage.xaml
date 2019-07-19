@@ -17,7 +17,8 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button x:Name="backButton" Grid.Row="0"
+        <Button x:Name="backButton"
+                Grid.Row="0"
                 BackgroundColor="#646466"
                 HorizontalOptions="Start"
                 VerticalOptions="Start"
@@ -27,6 +28,7 @@
                 IsVisible="false"
                 TextColor="{StaticResource CurrentBalanceColor}"
                 FontSize="20"
+                Clicked="BackButtonClicked"
                 Text="←"/>
 
         <!--LEFTWARDS ARROW
@@ -158,57 +160,13 @@ Unicode: U+2190, UTF-8: E2 86 90-->
             <StackLayout x:Name="menuContainer"
                          Margin="14, 20, 14, 20" 
                          Grid.Row="1"
-                         IsVisible="true">
-                <StackLayout Orientation="Horizontal">
-                    <BoxView Color="#E2E2E2"
-                             HeightRequest="25"
-                             WidthRequest="25" />
-                    <Label Text="Transfer"
-                           Margin="14, 0, 0, 0"
-                           VerticalTextAlignment="Center"
-                           FontSize="Small"
-                           TextColor="{StaticResource MenuItemTextColor}"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <BoxView Color="#E2E2E2"
-                             HeightRequest="25"
-                             WidthRequest="25" />
-                    <Label Text="Card details"
-                           Margin="14, 0, 0, 0"
-                           VerticalTextAlignment="Center"
-                           FontSize="Small"
-                           TextColor="{StaticResource MenuItemTextColor}"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <BoxView Color="#E2E2E2"
-                             HeightRequest="25"
-                             WidthRequest="25" />
-                    <Label Text="Set limits"
-                           Margin="14, 0, 0, 0"
-                           VerticalTextAlignment="Center"
-                           FontSize="Small"
-                           TextColor="{StaticResource MenuItemTextColor}"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <BoxView Color="#E2E2E2"
-                             HeightRequest="25"
-                             WidthRequest="25" />
-                    <Label Text="Change PIN"
-                           Margin="14, 0, 0, 0"
-                           VerticalTextAlignment="Center"
-                           FontSize="Small"
-                           TextColor="{StaticResource MenuItemTextColor}"/>
-                </StackLayout>
-                <StackLayout Orientation="Horizontal">
-                    <BoxView Color="#E2E2E2"
-                             HeightRequest="25"
-                             WidthRequest="25" />
-                    <Label Text="Block"
-                           Margin="14, 0, 0, 0"
-                           VerticalTextAlignment="Center"
-                           FontSize="Small"
-                           TextColor="{StaticResource MenuItemTextColor}"/>
-                </StackLayout>
+                         IsVisible="true"
+                         BindableLayout.ItemsSource="{Binding Menu}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <cell:MenuCellView></cell:MenuCellView>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
             </StackLayout>
             
             <Frame x:Name="transactionContainer"

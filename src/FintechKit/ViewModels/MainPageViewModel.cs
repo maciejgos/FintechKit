@@ -11,12 +11,15 @@ namespace FintechKit.ViewModels
         private double currentBalance;
         private IList<CardModel> cards;
         private IList<TransactionModel> transactions;
+        private IList<MenuModel> menu;
 
         public double CurrentBalance { get => currentBalance; set => SetProperty(ref currentBalance, value); }
 
         public IList<CardModel> Cards { get => cards; set => SetProperty(ref cards, value); }
 
         public IList<TransactionModel> Transactions { get => transactions; set => SetProperty(ref transactions, value); }
+
+        public IList<MenuModel> Menu { get => menu; set => SetProperty(ref menu,value); }
 
         public MainPageViewModel()
         {
@@ -62,6 +65,30 @@ namespace FintechKit.ViewModels
                     Title = "Burger House",
                     Date = DateTime.Today,
                     Amount = -50.25
+                }
+            };
+
+            Menu = new List<MenuModel>
+            {
+                new MenuModel
+                {
+                    Title = "Transfer"
+                },
+                new MenuModel
+                {
+                    Title = "Card details"
+                },
+                new MenuModel
+                {
+                    Title = "Set limits"
+                },
+                new MenuModel
+                {
+                    Title = "Change PIN"
+                },
+                new MenuModel
+                {
+                    Title = "Block"
                 }
             };
         }
