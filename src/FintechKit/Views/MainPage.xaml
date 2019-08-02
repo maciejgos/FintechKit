@@ -17,20 +17,6 @@
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
 
-        <Button x:Name="backButton"
-                Grid.Row="0"
-                BackgroundColor="#646466"
-                HorizontalOptions="Start"
-                VerticalOptions="Start"
-                WidthRequest="48"
-                HeightRequest="24"
-                Margin="14, 30, 0, 20"
-                IsVisible="false"
-                TextColor="{StaticResource CurrentBalanceColor}"
-                FontSize="20"
-                Clicked="BackButtonClicked"
-                Text="←"/>
-
         <!--LEFTWARDS ARROW
 Unicode: U+2190, UTF-8: E2 86 90-->
         
@@ -50,6 +36,19 @@ Unicode: U+2190, UTF-8: E2 86 90-->
                    HorizontalOptions="FillAndExpand"
                    HorizontalTextAlignment="Center" />
         </StackLayout>
+
+        <Button x:Name="backButton"
+                Grid.Row="0"
+                BackgroundColor="#646466"
+                HorizontalOptions="Start"
+                VerticalOptions="Start"
+                WidthRequest="48"
+                HeightRequest="26"
+                Margin="14, 36, 0, 20"
+                Opacity="0"
+                TextColor="{StaticResource CurrentBalanceColor}"
+                FontSize="20"
+                Text="←"/>
         
         <Grid Grid.Row="1">
             <Grid.RowDefinitions>
@@ -60,7 +59,7 @@ Unicode: U+2190, UTF-8: E2 86 90-->
             <Frame x:Name="cardDetailContainer"
                    Margin="14, 14, 14, 0" 
                    Padding="10"
-                   IsVisible="false">
+                   Opacity="0">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -181,13 +180,15 @@ Unicode: U+2190, UTF-8: E2 86 90-->
                     
                     <StackLayout Orientation="Horizontal"
                                  HorizontalOptions="FillAndExpand">
-                        <Label Text="Today"
+                        <Label x:Name="transactionsHeaderLabel"
+                               Text="Today"
                                FontSize="Large"
                                FontAttributes="Bold"
                                TextColor="{StaticResource ContainerHeaderColor}"
                                HorizontalOptions="FillAndExpand"
                                VerticalTextAlignment="Center"/>
-                        <Button Text="VIEW ALL"
+                        <Button x:Name="viewAllButton"
+                                Text="VIEW ALL"
                                 FontSize="10"
                                 FontAttributes="Bold"
                                 HeightRequest="12"

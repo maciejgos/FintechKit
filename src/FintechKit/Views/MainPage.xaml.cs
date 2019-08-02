@@ -18,6 +18,26 @@ namespace FintechKit.Views
             InitializeComponent();
         }
 
+        protected override void OnAppearing()
+        {
+            base.OnAppearing();
+
+            backButton.Clicked += BackButton_Clicked;
+        }
+
+        private async void BackButton_Clicked(object sender, EventArgs e)
+        {
+            Console.WriteLine("Back button clicked...");
+
+            if (isDetailView)
+            {
+                isDetailView = false;
+                await HideContainersAnimation();
+
+                HideControls();
+            }
+        }
+
         private async void OnCardItemTapped(object sender, EventArgs args)
         {
             if (isDetailView == false)
@@ -29,55 +49,56 @@ namespace FintechKit.Views
             }
         }
 
-        private async void BackButtonClicked(object sender, EventArgs e)
-        {
-            if (isDetailView)
-            {
-                isDetailView = false;
-                await HideContainersAnimation();
-
-                HideControls();
-
-            }
-        }
-
         private void ShowControls()
         {
-            backButton.IsVisible = true;
-            menuContainer.IsVisible = true;
-            cardDetailContainer.IsVisible = true;
+            //backButton.IsVisible = true;
+            //menuContainer.IsVisible = true;
+            //cardDetailContainer.IsVisible = true;
         }
 
         private void HideControls()
         {
-            backButton.IsVisible = false;
-            menuContainer.IsVisible = false;
-            cardDetailContainer.IsVisible = false;
+            //backButton.IsVisible = false;
+            //menuContainer.IsVisible = false;
+            //cardDetailContainer.IsVisible = false;
         }
 
         private async Task ShowContainersAnimation()
         {
-            await myCardsContainer.TranslateTo(0, -(currentBalanceContainer.Height + 20), animationLength);
-            await cardDetailContainer.TranslateTo(0, -(currentBalanceContainer.Height + 20), animationLength);
-            await menuContainer.TranslateTo(0, -80, animationLength);
-            await transactionContainer.TranslateTo(0, 100, animationLength);
-            await currentBalanceContainer.FadeTo(0, animationLength);
+            await currentBalanceContainer.FadeTo(0, 250, Easing.SinOut);
+            await backButton.FadeTo(1, 250, Easing.SinIn);
 
             await myCardsContainer.FadeTo(0);
-            await cardDetailContainer.FadeTo(1);
+            myCardsContainer.IsVisible = false;
+
+            await cardDetailContainer.FadeTo(1, 250, Easing.CubicInOut);
+            await cardDetailContainer.TranslateTo(0, -(currentBalanceContainer.Height + 20), animationLength, Easing.SinIn);
+            await menuContainer.TranslateTo(0, -80, animationLength, Easing.SinIn);
+
+            await transactionContainer.TranslateTo(0, 100, 250, Easing.SinOut);
+
+            transactionsHeaderLabel.Text = "Transactions";
+            await viewAllButton.FadeTo(0);
         }
 
         private async Task HideContainersAnimation()
         {
             await myCardsContainer.TranslateTo(0, 0, animationLength);
-            await cardDetailContainer.TranslateTo(0, 0, animationLength);
+
             await menuContainer.TranslateTo(0, 0, animationLength);
+            await cardDetailContainer.TranslateTo(0, 0, animationLength);
+            await backButton.FadeTo(0);
+
             await transactionContainer.TranslateTo(0, 0, animationLength);
             await currentBalanceContainer.FadeTo(1, animationLength);
 
+            myCardsContainer.IsVisible = true;
+
             await myCardsContainer.FadeTo(1);
             await cardDetailContainer.FadeTo(0);
-            await backButton.FadeTo(0);
+
+            transactionsHeaderLabel.Text = "Today";
+            await viewAllButton.FadeTo(1);
         }
     }
 }
