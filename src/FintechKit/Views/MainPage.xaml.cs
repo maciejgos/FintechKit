@@ -49,6 +49,21 @@ namespace FintechKit.Views
             }
         }
 
+        private void OnTransactionDetail_Tapped(object sender, EventArgs args)
+        {
+            Device.InvokeOnMainThreadAsync(async () =>
+            {
+                await currentBalanceContainer.FadeTo(0);
+                currentBalanceContainer.IsVisible = false;
+
+                backButton.IsVisible = true;
+                await backButton.FadeTo(1);
+
+                transactionDetailView.IsVisible = true;
+                await transactionDetailView.FadeTo(1);
+            });
+        }
+
         private void ShowControls()
         {
             //backButton.IsVisible = true;

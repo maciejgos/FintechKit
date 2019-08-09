@@ -8,6 +8,29 @@
              mc:Ignorable="d" 
              x:Class="FintechKit.Views.MainPage"
              BackgroundColor="{StaticResource BackgroundColor}">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style x:Key="backButtonStyle" TargetType="Button">
+                <Setter Property="BackgroundColor" Value="#646466" />
+                <Setter Property="HorizontalOptions" Value="Start" />
+                <Setter Property="VerticalOptions" Value="Start" />
+                <Setter Property="HeightRequest" Value="26" />
+                <Setter Property="WidthRequest" Value="48" />
+                <Setter Property="Margin" Value="14, 36, 0, 20" />
+                <Setter Property="TextColor" Value="{StaticResource CurrentBalanceColor}" />
+                <Setter Property="FontSize" Value="Large" />
+            </Style>
+
+            <Style x:Key="transactionDetailsButtonsStyle" TargetType="Button">
+                <Setter Property="WidthRequest" Value="160" />
+                <Setter Property="CornerRadius" Value="16" />
+                <Setter Property="TextColor" Value="White" />
+                <Setter Property="FontSize" Value="Default" />
+                <Setter Property="FontAttributes" Value="Bold" />
+                <Setter Property="BackgroundColor" Value="#34504C" />
+            </Style>
+        </ResourceDictionary>
+    </ContentPage.Resources>
     <ContentPage.BindingContext>
         <vm:MainPageViewModel />
     </ContentPage.BindingContext>
@@ -16,14 +39,12 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="*" />
         </Grid.RowDefinitions>
-
-        <!--LEFTWARDS ARROW
-Unicode: U+2190, UTF-8: E2 86 90-->
         
         <StackLayout x:Name="currentBalanceContainer"
                      Grid.Row="0" 
                      HorizontalOptions="FillAndExpand"
-                     Margin="0, 40, 0, 40">
+                     Margin="0, 40, 0, 40"
+                     IsVisible="true">
             <Label Text="Current balance"
                    TextColor="{StaticResource ContentTextColor}"
                    FontSize="Micro"
@@ -39,15 +60,8 @@ Unicode: U+2190, UTF-8: E2 86 90-->
 
         <Button x:Name="backButton"
                 Grid.Row="0"
-                BackgroundColor="#646466"
-                HorizontalOptions="Start"
-                VerticalOptions="Start"
-                WidthRequest="48"
-                HeightRequest="26"
-                Margin="14, 36, 0, 20"
+                Style="{StaticResource backButtonStyle}"
                 Opacity="0"
-                TextColor="{StaticResource CurrentBalanceColor}"
-                FontSize="20"
                 Text="←"/>
         
         <Grid Grid.Row="1">
@@ -159,13 +173,50 @@ Unicode: U+2190, UTF-8: E2 86 90-->
             <StackLayout x:Name="menuContainer"
                          Margin="14, 20, 14, 20" 
                          Grid.Row="1"
-                         IsVisible="true"
+                         Opacity="0"
                          BindableLayout.ItemsSource="{Binding Menu}">
                 <BindableLayout.ItemTemplate>
                     <DataTemplate>
                         <cell:MenuCellView></cell:MenuCellView>
                     </DataTemplate>
                 </BindableLayout.ItemTemplate>
+            </StackLayout>
+
+            <StackLayout x:Name="transactionDetailView"
+                         BackgroundColor="{StaticResource BackgroundColor}"
+                         IsVisible="false"
+                         Opacity="0">
+                <BoxView BackgroundColor="Orange"
+                         HeightRequest="80"
+                         WidthRequest="80"
+                         HorizontalOptions="Center"/>
+                <StackLayout HorizontalOptions="FillAndExpand">
+                    <Label Text="Starbucks"
+                           TextColor="White"
+                           FontSize="Default"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="Wendsday 15:35"
+                           TextColor="{StaticResource CurrentBalanceColor}"
+                           FontSize="Caption"
+                           HorizontalTextAlignment="Center"/>
+                    <Label Text="$1000.99"
+                           TextColor="White"
+                           FontSize="Large"
+                           FontAttributes="Bold"
+                           HorizontalTextAlignment="Center" />
+                </StackLayout>
+                <Grid Margin="10, 40, 10, 0">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Button Grid.Column="0"
+                            Text="View on map"
+                            Style="{StaticResource transactionDetailsButtonsStyle}"/>
+                    <Button Grid.Column="1"
+                            Text="Save receipe"
+                            Style="{StaticResource transactionDetailsButtonsStyle}"/>
+                </Grid>
             </StackLayout>
             
             <Frame x:Name="transactionContainer"
@@ -203,7 +254,11 @@ Unicode: U+2190, UTF-8: E2 86 90-->
                                  BindableLayout.ItemsSource="{Binding Transactions}">
                         <BindableLayout.ItemTemplate>
                             <DataTemplate>
-                                <cell:TransactionCellView />
+                                <cell:TransactionCellView>
+                                    <cell:TransactionCellView.GestureRecognizers>
+                                        <TapGestureRecognizer Tapped="OnTransactionDetail_Tapped" />
+                                    </cell:TransactionCellView.GestureRecognizers>
+                                </cell:TransactionCellView>
                             </DataTemplate>
                         </BindableLayout.ItemTemplate>                        
                     </StackLayout>
