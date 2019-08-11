@@ -43,8 +43,7 @@
         <StackLayout x:Name="currentBalanceContainer"
                      Grid.Row="0" 
                      HorizontalOptions="FillAndExpand"
-                     Margin="0, 40, 0, 40"
-                     IsVisible="true">
+                     Margin="0, 40, 0, 40">
             <Label Text="Current balance"
                    TextColor="{StaticResource ContentTextColor}"
                    FontSize="Micro"
@@ -69,6 +68,19 @@
                 <RowDefinition Height="Auto" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
+
+            <StackLayout x:Name="menuContainer"
+                         Margin="14, 20, 14, 20" 
+                         Grid.Row="1"
+                         Opacity="0"
+                         TranslationY="-140"
+                         BindableLayout.ItemsSource="{Binding Menu}">
+                <BindableLayout.ItemTemplate>
+                    <DataTemplate>
+                        <cell:MenuCellView></cell:MenuCellView>
+                    </DataTemplate>
+                </BindableLayout.ItemTemplate>
+            </StackLayout>
 
             <Frame x:Name="cardDetailContainer"
                    Margin="14, 14, 14, 0" 
@@ -133,8 +145,7 @@
             
             <Frame x:Name="myCardsContainer"
                    Margin="14, 14, 14, 0" 
-                   Padding="10"
-                   IsVisible="true">
+                   Padding="10">
                 <Grid>
                     <Grid.RowDefinitions>
                         <RowDefinition Height="Auto" />
@@ -169,18 +180,6 @@
                     </StackLayout>
                 </Grid>
             </Frame>
-
-            <StackLayout x:Name="menuContainer"
-                         Margin="14, 20, 14, 20" 
-                         Grid.Row="1"
-                         Opacity="0"
-                         BindableLayout.ItemsSource="{Binding Menu}">
-                <BindableLayout.ItemTemplate>
-                    <DataTemplate>
-                        <cell:MenuCellView></cell:MenuCellView>
-                    </DataTemplate>
-                </BindableLayout.ItemTemplate>
-            </StackLayout>
 
             <StackLayout x:Name="transactionDetailView"
                          BackgroundColor="{StaticResource BackgroundColor}"
