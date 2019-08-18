@@ -9,27 +9,7 @@
              x:Class="FintechKit.Views.MainPage"
              BackgroundColor="{StaticResource BackgroundColor}">
     <ContentPage.Resources>
-        <ResourceDictionary>
-            <Style x:Key="backButtonStyle" TargetType="Button">
-                <Setter Property="BackgroundColor" Value="#646466" />
-                <Setter Property="HorizontalOptions" Value="Start" />
-                <Setter Property="VerticalOptions" Value="Start" />
-                <Setter Property="HeightRequest" Value="26" />
-                <Setter Property="WidthRequest" Value="48" />
-                <Setter Property="Margin" Value="14, 36, 0, 20" />
-                <Setter Property="TextColor" Value="{StaticResource CurrentBalanceColor}" />
-                <Setter Property="FontSize" Value="Large" />
-            </Style>
-
-            <Style x:Key="transactionDetailsButtonsStyle" TargetType="Button">
-                <Setter Property="WidthRequest" Value="160" />
-                <Setter Property="CornerRadius" Value="16" />
-                <Setter Property="TextColor" Value="White" />
-                <Setter Property="FontSize" Value="Default" />
-                <Setter Property="FontAttributes" Value="Bold" />
-                <Setter Property="BackgroundColor" Value="#34504C" />
-            </Style>
-        </ResourceDictionary>
+        <ResourceDictionary Source="../Styles/Theme.xaml" />
     </ContentPage.Resources>
     <ContentPage.BindingContext>
         <vm:MainPageViewModel />
@@ -45,21 +25,14 @@
                      HorizontalOptions="FillAndExpand"
                      Margin="0, 40, 0, 40">
             <Label Text="Current balance"
-                   TextColor="{StaticResource ContentTextColor}"
-                   FontSize="Micro"
-                   HorizontalOptions="FillAndExpand"
-                   HorizontalTextAlignment="Center"/>
+                   Style="{StaticResource currentBalanceHeaderLabelStyle}" />
             <Label Text="{Binding CurrentBalance, StringFormat='${0:G}'}"
-                   TextColor="{StaticResource CurrentBalanceColor}"
-                   FontSize="30"
-                   FontAttributes="Bold"
-                   HorizontalOptions="FillAndExpand"
-                   HorizontalTextAlignment="Center" />
+                   Style="{StaticResource currentBalanceValueLabelStyle}"/>
         </StackLayout>
 
         <Button x:Name="backButton"
-                Grid.Row="0"
                 Style="{StaticResource backButtonStyle}"
+                Grid.Row="0"
                 Opacity="0"
                 Text="←"/>
         
@@ -100,20 +73,13 @@
 
                         <StackLayout>
                             <Label Text="Mastercard"
-                                    TextColor="{StaticResource ContentTextColor}"
-                                    FontSize="Default"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="FillAndExpand"/>
+                                   Style="{StaticResource cardDetailsHeaderLabelStyle}"/>
                             <Label Text="****666"
-                                    TextColor="{StaticResource ContentTextColor}"
-                                    FontSize="Small"/>
+                                   Style="{StaticResource cardDetailNrbLabelStyle}"/>
                         </StackLayout>
                         <BoxView Color="Orange"
-                                    Grid.Column="1"
-                                    HeightRequest="40"
-                                    WidthRequest="40"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"/>
+                                 Grid.Column="1"
+                                 Style="{StaticResource iconStyle}"/>
                     </Grid>
 
                     <Grid Grid.Row="1"
@@ -125,20 +91,14 @@
 
                         <StackLayout>
                             <Label Text="$78,278"
-                                    TextColor="{StaticResource ContainerHeaderColor}"
-                                    FontSize="Default"
-                                    FontAttributes="Bold"
-                                    HorizontalOptions="FillAndExpand"/>
+                                   Style="{StaticResource cardDetailAmountLabelStyle}"/>
                             <Label Text="Current balance"
-                                    TextColor="{StaticResource ContentTextColor}"
-                                    FontSize="Small"/>
+                                   TextColor="{StaticResource ContentTextColor}"
+                                   FontSize="Small"/>
                         </StackLayout>
                         <BoxView Color="Orange"
-                                    Grid.Column="1"
-                                    HeightRequest="40"
-                                    WidthRequest="40"
-                                    HorizontalOptions="Center"
-                                    VerticalOptions="Center"/>
+                                 Grid.Column="1"
+                                 Style="{StaticResource iconStyle}" />
                     </Grid>
                 </Grid>
             </Frame>
@@ -155,11 +115,7 @@
                     <StackLayout Orientation="Horizontal"
                                  HorizontalOptions="FillAndExpand">
                         <Label Text="My cards"
-                               FontSize="Large"
-                               FontAttributes="Bold"
-                               TextColor="{StaticResource ContainerHeaderColor}"
-                               HorizontalOptions="FillAndExpand"
-                               VerticalTextAlignment="Center"/>
+                               Style="{StaticResource headerLabelStyle}"/>
                         <BoxView Color="Orange"
                                  CornerRadius="20"
                                  HorizontalOptions="End" />
@@ -232,19 +188,10 @@
                                  HorizontalOptions="FillAndExpand">
                         <Label x:Name="transactionsHeaderLabel"
                                Text="Today"
-                               FontSize="Large"
-                               FontAttributes="Bold"
-                               TextColor="{StaticResource ContainerHeaderColor}"
-                               HorizontalOptions="FillAndExpand"
-                               VerticalTextAlignment="Center"/>
+                               Style="{StaticResource headerLabelStyle}"/>
                         <Button x:Name="viewAllButton"
                                 Text="VIEW ALL"
-                                FontSize="10"
-                                FontAttributes="Bold"
-                                HeightRequest="12"
-                                BackgroundColor="{StaticResource ButtonBackgroundColor}"
-                                Padding="14, 1, 14, 1"
-                                HorizontalOptions="End" />
+                                Style="{StaticResource transactionsButtonStyle}"/>
                     </StackLayout>
                     
                     

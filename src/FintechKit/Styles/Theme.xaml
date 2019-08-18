@@ -1,0 +1,84 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+                    x:Class="FintechKit.Styles.Theme">
+
+    <Style x:Key="backButtonStyle" TargetType="Button">
+        <Setter Property="BackgroundColor" Value="{StaticResource backButtonBgColor}" />
+        <Setter Property="HorizontalOptions" Value="Start" />
+        <Setter Property="VerticalOptions" Value="Start" />
+        <Setter Property="HeightRequest" Value="26" />
+        <Setter Property="WidthRequest" Value="48" />
+        <Setter Property="Margin" Value="14, 36, 0, 20" />
+        <Setter Property="TextColor" Value="{StaticResource CurrentBalanceColor}" />
+        <Setter Property="FontSize" Value="Large" />
+    </Style>
+
+    <Style x:Key="transactionDetailsButtonsStyle" TargetType="Button">
+        <Setter Property="WidthRequest" Value="160" />
+        <Setter Property="CornerRadius" Value="16" />
+        <Setter Property="TextColor" Value="{StaticResource ContentTextColor}" />
+        <Setter Property="FontSize" Value="Default" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="BackgroundColor" Value="{StaticResource transactionDetailButtonBgColor}" />
+    </Style>
+
+    <Style x:Key="currentBalanceHeaderLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ContentTextColor}" />
+        <Setter Property="FontSize" Value="Micro" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="currentBalanceValueLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource CurrentBalanceColor}" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="HorizontalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="cardDetailsHeaderLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ContentTextColor}" />
+        <Setter Property="FontSize" Value="Default" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="cardDetailNrbLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ContentTextColor}" />
+        <Setter Property="FontSize" Value="Small" />
+    </Style>
+
+    <Style x:Key="cardDetailAmountLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ContainerHeaderColor}" />
+        <Setter Property="FontSize" Value="Default" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+    </Style>
+
+    <Style x:Key="iconStyle" TargetType="BoxView">
+        <Setter Property="HeightRequest" Value="40" />
+        <Setter Property="WidthRequest" Value="40" />
+        <Setter Property="HorizontalOptions" Value="Center" />
+        <Setter Property="VerticalOptions" Value="Center" />
+    </Style>
+
+    <Style x:Key="headerLabelStyle" TargetType="Label">
+        <Setter Property="TextColor" Value="{StaticResource ContainerHeaderColor}" />
+        <Setter Property="FontSize" Value="Large" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HorizontalOptions" Value="FillAndExpand" />
+        <Setter Property="VerticalTextAlignment" Value="Center" />
+    </Style>
+
+    <Style x:Key="transactionsButtonStyle" TargetType="Button">
+        <Setter Property="FontSize" Value="Small" />
+        <Setter Property="FontAttributes" Value="Bold" />
+        <Setter Property="HeightRequest" Value="12" />
+        <Setter Property="Padding" Value="14, 1, 14, 1" />
+        <Setter Property="BackgroundColor" Value="{StaticResource ButtonBackgroundColor}" />
+        <Setter Property="HorizontalOptions" Value="End" />
+    </Style>
+
+</ResourceDictionary>

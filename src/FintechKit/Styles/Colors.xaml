@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<ResourceDictionary
+    xmlns="http://xamarin.com/schemas/2014/forms"
+    xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+    x:Class="FintechKit.Styles.Colors">
+    <Color x:Key="BackgroundColor">#34394C</Color>
+    <Color x:Key="ContentTextColor">#A8A8A8</Color>
+    <Color x:Key="CurrentBalanceColor">#E2E2E2</Color>
+    <Color x:Key="ContainerHeaderColor">#04040B</Color>
+    <Color x:Key="SeperatorLineColor">#E2E2E2</Color>
+    <Color x:Key="ButtonBackgroundColor">#E2E2E2</Color>
+    <Color x:Key="MenuItemTextColor">#E2E2E2</Color>
+    <Color x:Key="backButtonBgColor">#646466</Color>
+    <Color x:Key="transactionDetailButtonBgColor">#34504C</Color>
+</ResourceDictionary>
